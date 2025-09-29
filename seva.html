@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guru Mata Meera Prasadam Seva</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function calculateDonation() {
+      const meals = document.getElementById('meals').value;
+      const total = meals * 11;
+      document.getElementById('donationAmount').innerText = total ? `₹${total}` : '';
+      return total;
+    }
+    function redirectToUPI() {
+      const amount = calculateDonation();
+      if (!amount || amount <= 0) {
+        alert("Please enter a valid number of meals.");
+        return;
+      }
+      // Replace with your real UPI ID
+      const upiID = "9599999777@okbizaxis";  
+      const name = "Shri Yog Abhyas Ashram";
+      const note = "Meera Prasadam Seva Donation";
+      const url = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&mc=0000&tid=${Date.now()}&tr=${Date.now()}&tn=${encodeURIComponent(note)}&am=${amount}&cu=INR`;
+  
+      window.location.href = url;
+    }
+  </script>
+</head>
+<body class="bg-[#E1D4C8] text-[#684837] font-sans">
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-[#E1D4C8] to-white py-16 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-[#EE542F] mb-4">🌸 Guru Mata Meera Prasadam Seva 🌸</h1>
+    <p class="max-w-3xl mx-auto text-lg text-[#684837]">
+      With the divine blessings of our revered Gurudevs —<br>
+      Yog Yogeshwar Mahaprabhu Ramlal Ji Bhagwan,<br>
+      Yog Yogeshwar Mulakhraj Ji Bhagwan,<br>
+      Yog Yogeshwar Devideyal Ji Maharaj,<br>
+      Yog Yogeshwar Surender Dev Ji Maharaj
+    </p>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-12 px-6 md:px-20 bg-white text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-semibold text-[#EE542F] mb-4">About Meera Prasadam Seva</h2>
+      <p class="mb-4">
+        Shri Yog Abhyas Ashram Trust [Regd.] has initiated a humble service of love and compassion — 
+        <strong>Meera Prasadam Seva</strong>, a free food distribution program dedicated in the sacred memory of our Guru Mata Meera Ji.
+      </p>
+      <p>
+        This noble seva embodies the spirit of <em>Annadanam</em>, considered the highest form of charity in Sanātana Dharma.
+        As our Gurudev often reminded us, <span class="italic text-[#402021]">“Kalyug mein seva se hi moksha milta hai.”</span>
+      </p>
+    </div>
+  </section>
+  
+  
+
+  <!-- Inspiration Section -->
+  <section class="py-12 px-6 md:px-20 bg-[#E1D4C8]">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-2xl font-semibold text-[#EE542F] mb-4">Inspired by Eternal Truth</h2>
+        <p class="mb-4">
+          Inspired by this eternal truth, we aspire not only to nourish the body but also to serve humanity with devotion,
+          kindness, and the yogic tradition of selfless service.
+        </p>
+        <p>
+          Every meal offered carries the touch of grace, symbolizing Guru Mata Meera Ji’s compassion and the timeless
+          values of our Guru lineage. It is our prayer that this seva brings comfort, peace, and blessings to all who partake in it.
+        </p>
+      </div>
+      <div>
+        <img src="images/1.jpeg" alt="Seva Service" class="rounded-2xl shadow-md" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="py-12 bg-gradient-to-r from-[#E1D4C8] to-white text-center">
+    <blockquote class="text-xl md:text-2xl italic text-[#402021] max-w-3xl mx-auto">
+      ✨ “Serving food is serving the Divine within every being.” ✨
+    </blockquote>
+  </section>
+
+<!-- Gallery Section -->
+<section class="py-12 px-6 md:px-20 bg-white text-center">
+  <h2 class="text-2xl font-semibold text-[#EE542F] mb-6">Seva Moments</h2>
+  
+  <div id="gallery" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <img src="images/7.jpeg" alt="Gallery 1" class="rounded-xl shadow-md w-full h-64 object-cover" />
+    <img src="images/2.jpeg" alt="Gallery 2" class="rounded-xl shadow-md w-full h-64 object-cover" />
+    <img src="images/3.jpeg" alt="Gallery 3" class="rounded-xl shadow-md w-full h-64 object-cover" />
+    <img src="images/4.jpeg" alt="Gallery 4" class="rounded-xl shadow-md w-full h-64 object-cover hidden extra" />
+    <img src="images/5.jpeg" alt="Gallery 5" class="rounded-xl shadow-md w-full h-64 object-cover hidden extra" />
+    <img src="images/6.jpeg" alt="Gallery 6" class="rounded-xl shadow-md w-full h-64 object-cover hidden extra" />
+  </div>
+
+  <!-- Buttons -->
+  <div class="mt-6">
+    <button id="viewMore" onclick="toggleGallery(true)" class="px-6 py-2 bg-[#EE542F] text-white rounded-lg shadow hover:bg-[#d9441f]">View More</button>
+    <button id="viewLess" onclick="toggleGallery(false)" class="px-6 py-2 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-800 hidden">View Less</button>
+  </div>
+</section>
+
+<script>
+  function toggleGallery(showMore) {
+    const extras = document.querySelectorAll(".extra");
+    const viewMoreBtn = document.getElementById("viewMore");
+    const viewLessBtn = document.getElementById("viewLess");
+
+    extras.forEach(img => img.classList.toggle("hidden", !showMore));
+    viewMoreBtn.classList.toggle("hidden", showMore);
+    viewLessBtn.classList.toggle("hidden", !showMore);
+  }
+</script>
+
+
+  <!-- Donation Section -->
+  <section class="py-16 px-6 md:px-20 bg-[#E1D4C8] text-center">
+    <h2 class="text-3xl font-bold text-[#EE542F] mb-6">🙏 Help the Cause 🙏</h2>
+    <p class="mb-6 text-[#684837]">Decide how many meals you’d like to donate and contribute with love!</p>
+  
+    <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+      <div class="bg-white shadow-md p-6 rounded-2xl w-full md:w-1/2">
+        <label for="meals" class="block text-lg font-medium text-[#684837] mb-2">Number of Meals</label>
+        <input type="number" id="meals" min="1" placeholder="Enter meals" 
+               oninput="calculateDonation()" 
+               class="w-full border border-[#EE542F] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#EE542F]">
+  
+        <p class="mt-4 text-lg text-[#402021] font-semibold">Total Donation: <span id="donationAmount"></span></p>
+  
+        <!-- Donate Button -->
+        <button onclick="redirectToUPI()" 
+                class="mt-6 bg-[#EE542F] hover:bg-[#402021] text-white px-6 py-3 rounded-xl shadow-md transition">
+          Donate Now
+        </button>
+      </div>
+  
+      <div>
+        <img src="images/syaat qr.jpg" alt="QR Code" 
+             class="w-64 mx-auto rounded-lg shadow-lg border-4 border-[#EE542F]" />
+        <p class="mt-4 text-[#684837]">Scan the QR to donate</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-[#402021] py-6 text-center text-white">
+    <p>© 2025 Shri Yog Abhyas Ashram Trust [Regd.] — All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
